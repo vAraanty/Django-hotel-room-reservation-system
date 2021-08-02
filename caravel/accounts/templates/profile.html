@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block upper_links %}
+<link href="{% static 'myconfigs/css/profile.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+Профиль {{ user.login }}
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+    <h1>{{ user.get_full_name }}</h1>
+</div>
+{% if receipt_message %}
+<div class="success-message">
+  <p>Ваша квитанция успешно отправлена. Она будет рассмотрена менеджером в ближайшее время!</p>
+</div>
+{% endif %}
+
+{% if success_message %}
+<div class="success-message">
+    <p>Данные вашего профиля успешно изменены!</p>
+</div>
+{% endif %}
+
+<div class="profile-wrapper">
+    <div class="profile">
+        {% if user.is_staff %}
+        <p>Пользовательские заявки</p>
+        <div class="profile-info">
+            <form action="{% url 'show_reservations' %}" method="get">
+                <input type="submit" value="Просмотр">
+            </form>
+        </div>
+        {% endif %}
+        <p>Данные по вашему профилю</p>
+        <div class="split">
+            <div class="profile-info">
+                <p>Логин: {{ user.login }}</p>
+                <p>Email: {{ user.email }}</p>
+                <p>Номер телефона: {{ user.phone_number }}</p>
+            </div>
+            <div class="actions">
+                <form action="{% url 'logout' %}">
+                    <input type="submit" value="Выход">
+                </form>
+                {% if user.count_bookings_waiting_for_payment != 0 %}
+                <form action="{% url 'payment' %}" method="get">
+                    <input type="submit" value="Оплатить">
+                </form>
+                {% endif %}
+                <form action="{% url 'change_info' user.login %}">
+                    <input type="submit" value="Изменить данные">
+                </form>
+            </div>
+        </div>
+        <p>Ваши бронирования</p>
+        {% if user.get_user_bookings %}
+        <div>
+            <table class="table">
+                <tr>	<th>Номер</th>			        <th>Дата заезда</th>	                <th>Дата выезда</th>			            <th>Статус</th>                 </tr>
+                {% for booking in user.get_user_bookings %}
+                <tr>	<td>{{ booking.room }}</td>		<td>{{ booking.arrival_date }}</td>		<td>{{ booking.departure_date }}</td>		<td>{{ booking.status }}</td>   </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <div class="profile-info">
+            <p>Вы ещё не бронировали номер.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

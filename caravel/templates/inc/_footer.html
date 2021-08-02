@@ -1,0 +1,40 @@
+<footer>
+    {% load static %}
+    <div class="footer-top">
+        <div class="footer-top-section">
+            <p>Мы в соцсетях</p>
+            <div class="footer-top-section links">
+                <a href="https://youtube.com" class="socials"><img src="{% static 'media/images/icons/youtube.png' %}" class="socials" alt="">Youtube</a>
+                <a href="https://facebook.com" class="socials"><img src="{% static 'media/images/icons/facebook.png' %}" class="socials" alt="">Facebook</a>
+                <a href="https://instagram.com" class="socials"><img src="{% static 'media/images/icons/instagram.png' %}" class="socials" alt="">Instagram</a>
+                <a href="https://twitter.com" class="socials"><img src="{% static 'media/images/icons/twitter.png' %}" class="socials" alt="">Twitter</a>
+            </div>
+        </div>
+        <div>
+            <p>Главный офис</p>
+            <div style="font-size: 20px">
+                72, Kyivska st<br>
+                Yalta - Ukraine<br>
+                Tel: +38 (099) 012 2245<br>
+                Tel: +38 (097) 133 5299<br>
+                <a href="mailto:info@caravelhotel.ua">info@caravelhotel.ua</a>
+            </div>
+        </div>
+        <div class="footer-top-section">
+            <p>Навигация</p>
+            <div class="footer-top-section links">
+                <a href="{% url 'rooms_index' %}">Номера и аппартаменты</a>
+                <a href="hotel.html">Про отель</a>
+                <a href="{% url 'show_feedbacks' %}">Отзывы</a>
+                <a href="gallery.html">Галерея</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2021 Caravel
+        <a href="#">Правовая информация</a>
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Условия и положения</a>
+        <a href="{% url 'feedback_index' %}">Обратная связь</a>
+    </div>
+</footer>

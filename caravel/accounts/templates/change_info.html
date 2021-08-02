@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block upper_links %}
+<link rel="stylesheet" href="{% static 'myconfigs/css/registration.css' %}">
+{% endblock %}
+
+{% block title %}
+Изменить данные
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+    <h1>Изменить данные</h1>
+</div>
+
+{% if data_not_changed %}
+<div class="success-message">
+    <p>Данные не были изменены, поскольку Вы не внесли изменений.</p>
+</div>
+{% endif %}
+
+<div class="form-wrapper">
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <div>
+                <label for="id_name">Имя</label>
+                <input id="id_name" required name="name" value="{{ current_user.name }}">
+            </div>
+            <div>
+                <label for="id_surname">Фамилия</label>
+                <input id="id_surname" required name="surname" value="{{ current_user.surname }}">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="id_login">Логин</label>
+                <input id="id_login" required name="login" value="{{ current_user.login }}">
+                {% if errors.login.validation %}
+                <p class="error">Проверьте правильность ввода логина.</p>
+                {% endif %}
+                {% if errors.login.uniqueness %}
+                <p class="error">Пользователь с таким логином уже есть.</p>
+                {% endif %}
+            </div>
+            <div>
+                <label for="id_email">Email</label>
+                <input type="email" id="id_email" required name="email" value="{{ current_user.email }}">
+                {% if errors.email.validation %}
+                <p class="error">Проверьте правильность ввода email.</p>
+                {% endif %}
+                {% if errors.email.uniqueness %}
+                <p class="error">Пользователь с таким email уже есть.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="id_phone_number">Номер телефона</label>
+                <input id="id_phone_number" name="phone_number" required value="{{ current_user.phone_number }}">
+                {% if errors.phone_number.validation %}
+                <p class="error">Проверьте правильность ввода номера телефона.</p>
+                {% endif %}
+                {% if errors.phone_number.uniqueness %}
+                <p class="error">Пользователь с таким номером телефона уже есть.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="id_password1">Пароль</label>
+                <input type="password" id="id_password1" name="password1">
+                <p>Оставьте пустым, если не хотите менять пароль.</p>
+                {% if errors.password1 %}
+                <p class="error">Проверьте правильность ввода пароля.</p>
+                {% endif %}
+            </div>
+            <div>
+                <label for="id_password2">Введите пароль повторно</label>
+                <input type="password" id="id_password2" name="password2">
+                <p>Оставьте пустым, если не хотите менять пароль.</p>
+                {% if errors.password2 %}
+                <p class="error">Пароли не совпадают.</p>
+                {% endif %}
+            </div>
+        </div>
+        <input type="submit" value="Изменить данные">
+    </form>
+</div>
+{% endblock content %}

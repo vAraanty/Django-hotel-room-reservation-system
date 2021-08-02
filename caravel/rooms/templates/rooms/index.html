@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load rooms_tags %}
+
+{% block upper_links %}
+<link rel="stylesheet" href="{% static 'myconfigs/css/rooms.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+    <h1>Номера и апартаменты</h1>
+<div id="hthird">
+    <h3>Помимо прекраснейших видов, что открываются с любой точки отеля, мы предоставляем столь же умиротворяющие номера и апартаменты.</h3>
+</div>
+</div>
+<div id="page">
+    {% get_rooms as rooms %}
+    {% for room in rooms %}
+    <div class="mini-block">
+        <div class="images">
+            <div class="main-image">
+                <img src="{{ room.images.all.0.image.url }}" class="mini-block" alt="">
+            </div>
+            <div class="miniature">
+                <img src="{{ room.images.all.1.image.url }}" class="miniature" alt="">
+                <img src="{{ room.images.all.2.image.url }}" class="miniature" alt="">
+            </div>
+        </div>
+        <div class="info-block">
+            <div>
+                <a href="{{ room.get_absolute_url }}" class="room-links"><h2>{{ room.name }}</h2></a>
+            </div>
+            <div>
+                <p>{{ room.description }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="mini-block" style="border: none;">
+        <table class="table">
+            <tr>	<th>Номер</th>			        <th>Всего номеров</th>	                <th>Площадь</th>			            <th>Вместительность человек</th>		                                            <th>Стоимость</th>		            </tr>
+            {% for room in rooms %}
+            <tr>	<td>{{ room.name }}</td>		<td>{{ room.exists }}</td>				<td>{{ room.area }} м<sup>2</sup></td>	<td>{{ room.adult_capacity }} взрослых {% if room.child_capacity %}, {{ room.child_capacity }} детей {% endif %}</td>		<td>&#8372; {{ room.price }}</td>	</tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="button">
+        <a href="{% url 'booking_index' %}" class="button">Забронировать</a>
+    </div>
+</div>
+{% endblock %}

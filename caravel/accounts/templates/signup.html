@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block upper_links %}
+<link rel="stylesheet" href="{% static 'myconfigs/css/registration.css' %}">
+{% endblock %}
+
+{% block title %}
+Регистрация
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+    <h1>Регистрация</h1>
+</div>
+{% if sign_up_message %}
+<div class="success-message">
+    <p>Вы успешно зарегистрированы! Войдите на странице <a href="{% url 'login' %}">входа</a></a>.</p>
+</div>
+{% endif %}
+
+<div class="form-wrapper">
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <div>
+                <label for="id_name" class="form-required">Имя</label>
+                <input id="id_name" required name="name">
+            </div>
+            <div>
+                <label for="id_surname" class="form-required">Фамилия</label>
+                <input id="id_surname" required name="surname">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="id_login" class="form-required">Логин</label>
+                <input id="id_login" required name="login">
+                {% if errors.login.validation %}
+                <p class="error">Проверьте правильность ввода логина.</p>
+                {% endif %}
+                {% if errors.login.uniqueness %}
+                <p class="error">Пользователь с таким логином уже есть.</p>
+                {% endif %}
+            </div>
+            <div>
+                <label for="id_email" class="form-required">Email</label>
+                <input type="email" id="id_email" required name="email">
+                {% if errors.email.validation %}
+                <p class="error">Проверьте правильность ввода email.</p>
+                {% endif %}
+                {% if errors.email.uniqueness %}
+                <p class="error">Пользователь с таким email уже есть.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="id_phone_number" class="form-required">Номер телефона</label>
+                <input id="id_phone_number" name="phone_number" required>
+                {% if errors.phone_number.validation %}
+                <p class="error">Проверьте правильность ввода номера телефона.</p>
+                {% endif %}
+                {% if errors.phone_number.uniqueness %}
+                <p class="error">Пользователь с таким номером телефона уже есть.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="id_password1" class="form-required">Пароль</label>
+                <input type="password" required id="id_password1" name="password1">
+                {% if errors.password1 %}
+                <p class="error">Проверьте правильность ввода пароля.</p>
+                {% endif %}
+            </div>
+            <div>
+                <label for="id_password2" class="form-required">Введите пароль повторно</label>
+                <input type="password" required id="id_password2" name="password2">
+                {% if errors.password2 %}
+                <p class="error">Пароли не совпадают.</p>
+                {% endif %}
+            </div>
+        </div>
+        <input type="submit" value="Зарегистрироваться">
+        <p style="margin-top: 15px;">Уже есть аккаунт ? <a href="{% url 'login' %}" style="color: #b7403a">Войдите</a>
+        </p>
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,152 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block upper_links %}
+<link rel="stylesheet" href="{% static 'myconfigs/css/slider.css' %}">
+<link rel="stylesheet" href="{% static 'myconfigs/css/index.css' %}">
+{% endblock %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="video-wrapper">
+	<video class="video" autoplay>
+		<source src="{% static 'media/videoplayback.mp4' %}" type="video/mp4">
+	</video>
+</div>
+<div class="page-container">
+	<div class="slider-container">
+		<div class="slide">
+			<div class="counter">1 / 5</div>
+			<img src="{% static 'media/images/exterior/exterior1.jpg' %}">
+		</div>
+		<div class="slide">
+			<div class="counter">2 / 5</div>
+			<img src="{% static 'media/images/restaurant/restaurant2.jpg' %}">
+		</div>
+		<div class="slide">
+			<div class="counter">3 / 5</div>
+			<img src="{% static 'media/images/room/room16.jpg' %}">
+		</div>
+		<div class="slide">
+			<div class="counter">4 / 5</div>
+			<img src="{% static 'media/images/exterior/exterior6.jpg' %}">
+		</div>
+		<div class="slide">
+			<div class="counter">5 / 5</div>
+			<img src="{% static 'media/images/exterior/exterior16.jpg' %}">
+		</div>
+		<a class="prev" onclick="moveSlide(-1)">&#11164;</a>
+		<a class="next" onclick="moveSlide(1)">&#11166;</a>
+		<div class="dots">
+			<span class="dot" onclick="setSlide(1)"></span>
+			<span class="dot" onclick="setSlide(2)"></span>
+			<span class="dot" onclick="setSlide(3)"></span>
+			<span class="dot" onclick="setSlide(4)"></span>
+			<span class="dot" onclick="setSlide(5)"></span>
+		</div>
+	</div>
+	<div class="content right-image">
+		<div class="text-content" style="justify-content: space-between;">
+			<h2>О нас</h2>
+			<p>Отель расположен в море, в 2.5 км от пляжа. С отеля открываются прекраснейшие виды на скалистый ландшафт Крымского полуострова.
+			Мы предоставляем Вам возможность по-настоящему отдохнуть от работы, тяжёлых будней и всей городской суеты.
+			Находясь в отеле, Вы действительно чувствуете умиротворение и единение с морем и природой в целом.</p>
+			<div class="list">
+				<div class="item">
+					Номера, расчитанные как на пары, так и на большие семьи
+				</div>
+				<div class="item">
+					Ресторан на верхней и нижней палубе, бар с множеством напитков
+				</div>
+				<div class="item">
+					Питание, спа-процедуры, пользование лодкой - всё включено
+				</div>
+			</div>
+			<div class="button">
+				<a class="button" href="hotel.html">Узнать больше</a>
+			</div>
+		</div>
+		<div class="image-content">
+			<img alt="" src="{% static 'media/images/mountain-view.jpg' %}">
+		</div>
+	</div>
+	<div class="content zum">
+		<div class="text">
+			<h2>Номера и аппартаменты</h2>
+		</div>
+		<div class="zoomer" style="margin-right: 0;">
+			<div>
+				<img alt="" src="{% static 'media/images/rooms/exclusive/1.jpg' %}">
+					<span>Exclusive</span>
+			</div>
+			<div>
+				<img alt="" src="{% static 'media/images/rooms/premium-suite/1.jpg' %}">
+				<span>Premium Suite</span>
+			</div>
+			<div>
+				<img alt="" src="{% static 'media/images/rooms/family/1.jpg' %}">
+				<span>Family</span>
+			</div>
+		</div>
+	</div>
+	<div class="content left-image">
+		<div class="text-content">
+			<h2>Отдых по полной</h2>
+			<p>Отдых на корабле посреди моря - это замечательно. Но не стоит забывать, что отдых может быть и активный.
+			Активный отдых приносит не меньше удовольствия, чем пассивный. Гребля на каноэ хороший тому пример. Отправляйтесь 
+			в заплыв вдоль скал. Помимо физической активности, Вы так же получаете возможность поближе рассмотреть скалистую
+			местность.
+			</p>
+		</div>
+		<div class="image-content">
+			<img alt="" src="{% static 'media/images/canoe-activity.jpg' %}">
+		</div>
+	</div>
+	<div class="content right-image">
+		<div class="text-content">
+			<h2>Оздоровление не покидая отеля</h2>
+			<p>
+			Что может быть лучше, чем спа-процедуры в 3-х минутах от номера? В нашу команду входят именитые мастера, 
+			что зарекомендовали себя профессинализмом в области спа-процедур. Для спа-процедур используются лишь 
+			качественные препараты, изготовленные во Франции, Израиле, Бельгии.
+			</p>
+		</div>
+		<div class="image-content">
+			<img alt="" src="{% static 'media/images/spa.jpg' %}">
+		</div>
+	</div>
+	<div class="content left-image">
+		<div class="text-content" style="justify-content: space-evenly">
+			<h2>Вместе веселей!</h2>
+			<p>
+			Каждый вечер мы проводим чайную церемонию, полностью соблюдая древнейшие китайские традиции. 
+			Присоединяйтесь к нам! Это прекрасная возможность познакомиться поближе с другими постояльцами отеля, 
+			найти новых знакомых, провести время в интересной и весёлой компании.
+			</p>
+		</div>
+		<div class="image-content">
+			<img alt="" src="{% static 'media/images/tea-ceremony.jpg' %}">
+		</div>
+	</div>
+	<div class="content">
+		<div class="phone-wrapper">
+			<p style="margin-bottom: 15px;">
+				Оставьте нам Ваш номер телефона, и мы позвоним в указанное время.
+			</p>
+			<form action="" class="phone-me">
+				<input type="tel" name="phone" id="phone" placeholder="+380990000000" required>
+				<input type="time" name="time" id="time" value="17:00" min="08:00" max="20:59" required>
+				<input type="submit" id="submit" name="submit">
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block bottom_links %}
+<script src="{% static 'myconfigs/js/slider.js' %}"></script>
+{% endblock %}

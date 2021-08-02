@@ -1,0 +1,35 @@
+<header>
+	{% load static %}
+	<div id="left-block">
+		<a href="{% url 'index' %}" class="logo">
+			<img src="{% static 'media/logo.png' %}" id="main-page-logo" alt="">
+			Caravel Hotel
+		</a>
+	</div>
+	<div id="right-block">
+		<nav>
+			<div class="dropdown">
+				<a href="{% url 'booking_index' %}" id="book">Забронировать</a>
+			</div>
+			<div class="dropdown">
+				<a href="{% url 'rooms_index' %}">Номера и аппартаменты</a>
+			</div>
+			<div class="dropdown">
+				<a href="hotel.html">Про отель</a>
+			</div>
+			<div class="dropdown">
+				<a href="{% url 'show_feedbacks' %}">Отзывы</a>
+			</div>
+			<div class="dropdown">
+				<a href="gallery.html">Галерея</a>
+			</div>
+			<div class="dropdown">
+				{% if user.is_authenticated %}
+				<a href="{% url 'show_profile' user.login %}">Профиль</a>
+				{% else %}
+				<a href="{% url 'signup' %}">Регистрация</a>
+				{% endif %}
+			</div>
+		</nav>
+	</div>
+</header>

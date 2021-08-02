@@ -1,0 +1,8 @@
+select {
+	width: 600px!important;
+}
+div > div >p {
+	font-family: Montserrat;
+	margin-bottom: 5px;
+	font-size: 18px;
+}

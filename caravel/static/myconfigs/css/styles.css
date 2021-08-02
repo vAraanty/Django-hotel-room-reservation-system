@@ -1,0 +1,235 @@
+@font-face{
+	font-family: "BlackJack";
+	src: url("../fonts/blackjack-font.TTF");
+}
+@font-face{
+	font-family: "Nexa";
+	src: url("../fonts/nexa.ttf");
+}
+@font-face{
+	font-family: "IntroScript";
+	src: url("../fonts/introscript.ttf");
+}
+@font-face{
+	font-family: "Montserrat";
+	src: url("../fonts/montserrat.ttf");
+}
+*{
+	padding:0;
+	margin:0;
+	font-family: Nexa;
+}
+html, body{
+	height: 100%;
+}
+div, h1, h2, h3, h4, h5, a, p, span{
+	text-align: inherit;
+}
+footer p{
+	font-size: 20px;
+}
+footer p{
+	text-align: center;
+}
+h1{
+	font-family: IntroScript;
+}
+a{
+	color: black;
+	text-decoration: none;
+}
+header{
+	position: fixed;
+	z-index: 100;
+	background-color: white;
+	width: 95%;
+	font-size: 22px;
+	padding: 0 0 0 5%;
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 0 0 4px black;
+	white-space: nowrap;
+}
+main{
+	flex: 1 0 auto;
+	margin-top: 60px;
+}
+footer{
+	margin: 40px 0 0 0;
+	flex: 0 0 auto;
+}
+.logo{
+	display: flex;
+	align-items: center;
+	font-family: BlackJack;
+	font-weight: bold;
+	font-size: 28px;
+}
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+.footer-top{
+	padding: 10px 20vw 25px;
+	box-shadow: 0 0 4px black;
+	display: flex;
+	justify-content: space-around;
+	
+}
+.footer-bottom{
+	display: flex;
+	justify-content: space-around;
+	padding: 10px 15vw 10px;
+	font-size: 18px;
+}
+nav{
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 100%;
+}
+nav > div{
+	padding: 5px 25px;
+}
+a:hover{
+	color: #d80202;
+}
+#left-block{
+	display: flex;
+	align-items:center;
+}
+#right-block{
+	width: 90%;
+}
+#main-page-logo{
+	height: 60px;
+	width: 100px;
+}
+div.hone{
+	margin-top: 4vh;
+	text-align:center;
+}
+div.hone > h1{
+	font-weight: normal;
+	font-size: 50px;
+}
+#book{
+	color: red;
+	text-shadow: 1px 1px 0px black;
+}
+.footer-top-section{
+	display: flex;
+	flex-direction: column;
+}
+.footer-top-section.links{
+	height: 100%; 
+	justify-content: space-around; 
+	font-size: 20px;
+}
+img.socials{
+	width: 25px;
+	height: 25px;
+	padding-right: 8px;
+}
+a.socials{
+	display: flex;
+	align-items: center;
+}
+.form{
+	display: flex; 
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	font-size: 25px;
+}
+label, .label{
+	margin-bottom: 10px;
+}
+input, label, select, textarea, .label{
+	display: block;
+}
+input, select, textarea{
+	font-size: 20px;
+	height: 30px;
+	width: 330px;
+	text-indent: 5px;
+	font-family: Montserrat;
+}
+select {
+	height: 34px;
+}
+textarea{
+	resize: none;
+	width: 100%;
+	height: auto;
+}
+option{
+	font-family: inherit;
+}
+select:invalid{
+	color: gray; 
+}
+form label, .label{
+	font-family: Montserrat;
+	font-size: 20px;
+}
+form > div{
+	margin: 40px 0 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.form-wrapper{
+	display: flex;
+	padding: 15px 3vw;
+	box-shadow: 0 0 4px black;
+	width: 1080px;
+	margin: 50px auto;
+}
+input[type="submit"]{
+	font-family: Montserrat;
+	font-weight: bold;
+	background-color: white;
+	color: #b7403a;
+	border: 2px solid #b7403a;
+	cursor: pointer;
+}
+input[type="submit"]:hover{
+	color: red;
+	border-color: red;
+}
+.dropdown {
+	position: relative;
+}
+.dropdown-child {
+	height: 60px;
+	left: 14px;
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+	display: none;
+}
+.dropdown-child a {
+	background-color: white;
+	display: block;
+	padding: 20px 10px 10px;
+	border-bottom: 1px solid black;
+}
+.dropdown:hover .dropdown-child,
+.dropdown-child:hover,
+.current-page:hover{
+	z-index: 0;
+	visibility: visible;
+	opacity: 1;
+	display: block;
+}
+.current-page{
+	pointer-events: none;
+	text-shadow: 2px 0px 0px #ffd180;
+}
+.form-required::after{
+	content: " *";
+	color: #b7403a;
+}

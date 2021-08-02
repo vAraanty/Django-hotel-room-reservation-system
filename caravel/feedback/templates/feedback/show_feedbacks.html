@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load feedback_tags %}
+
+{% block upper_links %}
+<link rel="stylesheet" href="{% static 'myconfigs/css/feedbacks.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'myconfigs/css/rating.css' %}">
+{% endblock %}
+
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+    <h1>Пользовательские отзывы</h1>
+</div>
+<div id="page">
+    {% get_feedbacks as feedbacks %}
+    {% for feedback in feedbacks %}
+    <div class="content">
+        <div class="text-content {% if forloop.counter0|divisibleby:2 %}left-image{% else %}right-image{% endif %}">
+            <h2>{{ feedback.user }}</h2>
+            <div class="stars">
+                <span>
+                    {% for i in feedback.rating|create_range %}
+                        <p class="star-{{ i }} active"></p>
+                    {% endfor %}
+                </span>
+            </div>
+            <p>{{ feedback.content }}</p>
+            <p class="datetime">{{ feedback.when_given }}, {{ feedback.room }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

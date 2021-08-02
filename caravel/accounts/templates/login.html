@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block upper_links %}
+<link href="{% static 'myconfigs/css/registration.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+Вход в кабинет
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+  <h1>Вход в кабинет</h1>
+</div>
+{% if login_message %}
+<div class="hone">
+  {{ login_message }}
+</div>
+{% endif %}
+<div class="form-wrapper">
+  <form method="post">
+    <div>
+      {% csrf_token %}
+      <div>
+        <label for="id_email" class="form-required">Email:</label>
+        <input type="email" required id="id_email" name="email">
+      </div>
+      <div>
+        <label for="id_password">Пароль:</label>
+        <input type="password" required id="id_password" name="password">
+      </div>
+    </div>
+    {% if error %}
+    <p class="error" style="margin-top: 15px; max-width: 1000px;">Проверьте правильность ввода почты и пароля.</p>
+    {% endif %}
+    <input type="submit" value="Войти">
+    <p style="margin-top: 15px;">Ещё нет кабинета ? <a href="{% url 'signup' %}" style="color: #b7403a">Зарегистрируйтесь</a></p>
+  </form>
+  {% endblock content %}
+</div>

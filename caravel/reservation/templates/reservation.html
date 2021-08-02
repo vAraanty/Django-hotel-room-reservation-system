@@ -1,0 +1,84 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load rooms_tags %}
+
+{% block upper_links %}
+<link rel="stylesheet" href="{% static 'myconfigs/css/reservation.css' %}">
+{% endblock %}
+
+{% block title %}
+Забронировать номер
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+    <h1>Забронировать номер</h1>
+</div>
+{% if success %}
+<div class="success-message">
+    <p>Ваша заявка принята. Она будет рассмотрена менеджером в ближайшее время!</p>
+</div>
+{% endif %}
+
+<div class="form-wrapper">
+    <form class="form" method="post">
+        {% csrf_token %}
+        {% if user.is_anonymous %}
+        <div>
+            <div>
+                <label for="id_name" class="form-required">Имя</label>
+                <input id="id_name" name="name" required>
+            </div>
+            <div>
+                <label for="id_surname" class="form-required">Фамилия</label>
+                <input id="id_surname" name="surname" required>
+            </div>
+            <div>
+                <label for="id_email" class="form-required">Email</label>
+                <input type="email" id="id_email" name="email" required>
+                {% if errors.email %}
+                <p class="error">Проверьте правильность ввода Email.</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+        <div>
+            <div>
+                <label for="id_arrival_date" class="form-required">Дата заезда</label>
+                <input type="date" id="id_arrival_date" name="arrival_date" required>
+                {% if errors.arrival_date %}
+                <p class="error">Проверьте правильность введённой даты.</p>
+                {% endif %}
+            </div>
+            <div>
+                <label for="id_departure_date" class="form-required">Дата выезда</label>
+                <input type="date" id="id_departure_date" name="departure_date" required>
+                {% if errors.departure_date %}
+                <p class="error">Проверьте правильность введённой даты.</p>
+                {% endif %}
+            </div>
+            {% if user.is_anonymous %}
+            <div>
+                <label for="id_phone_number" class="form-required">Номер телефона</label>
+                <input id="id_phone_number" name="phone_number" required>
+                {% if errors.arrival_date %}
+                <p class="error">Проверьте правильность номера телефона, обязательно должен начинаться "+".</p>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            {% endif %}
+            <div>
+                <label for="id_room" class="form-required">Номер</label>
+                <select name="room" required id="id_room">
+                    <option value selected>---------</option>
+                    {% for room in rooms %}
+                    <option value="{{ room.id }}">{{ room.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <input type="submit" style="margin-top: 35px;">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+.success-message {
+	text-align: center;
+	width: 1100px;
+	margin: 20px auto 0 auto;
+	border: 2px solid green;
+	padding: 15px 3vw;
+}
+.success-message p{
+	font-family: Nexa;
+	font-size: 25px;
+	margin-bottom: 0px;
+}
+.button {
+	font-size: 20px;
+	font-family: Montserrat;
+	font-weight: bold;
+	padding: 5px;
+	background-color: white;
+	color: #b7403a;
+	border: 2px solid #b7403a;
+	cursor: pointer;
+	margin-top: 10px;
+}

@@ -1,0 +1,19 @@
+.error {
+	color: red;
+	padding-top: 5px;
+	font-size: 16px;
+	font-family: Montserrat;
+	width: 330px;
+}
+.success-message {
+	text-align: center;
+	width: 1080px;
+	margin: 20px auto 0 auto;
+	border: 2px solid green;
+	padding: 15px 3vw;
+}
+.success-message p{
+	font-family: Nexa;
+	font-size: 20px;
+	margin-bottom: 0px;
+}

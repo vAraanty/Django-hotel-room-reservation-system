@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block upper_links %}
+<link rel="stylesheet" href="{% static 'myconfigs/css/room.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ room_item.name }} :: {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div>
+    <div class="content left-image">
+        <div class="text-content">
+            <h2>{{ room_item.name }}</h2>
+            <p>{{ room_item.description }}</p>
+        </div>
+        <div class="image-content">
+            <img src="{{ room_item.images.all.0.image.url }}">
+        </div>
+    </div>
+</div>
+{% endblock %}

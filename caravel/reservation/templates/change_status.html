@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block upper_links %}
+<link href="{% static 'myconfigs/css/profile.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+Изменить бронирование
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+    <h1>Изменить бронирование</h1>
+</div>
+{% if receipt_message %}
+<div class="success-message">
+  <p>Статус бронирования успешно изменён.</p>
+</div>
+{% endif %}
+<div class="profile-wrapper">
+    <div class="profile">
+        <p>Информация про пользователя</p>
+        <div class="split">
+            <div class="profile-info">
+                <p>Имя пользователя: {{ reservation.user.name }}</p>
+                <p>Email: {{ reservation.user.email }}</p>
+                <p>Номер телефона: {{ reservation.user.phone_number }}</p>
+                <p>Зарегистрированный пользователь: {{ reservation.user.is_user }}</p>
+            </div>
+            <div class="actions">
+                <form method="post" class="new-status-form">
+                    {% csrf_token %}
+                    <div class="new-status-wrapper">
+                        <label for="id_new_status" class="form-required">Новый статус бронирования</label>
+                        <select name="new_status" required id="id_new_status">
+                            <option value selected>Без изменений</option>
+                            {% for status in statuses %}
+                            <option value="{{ status.id }}">{{ status.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <input type="submit" value="Изменить">
+                </form>
+            </div>
+        </div>
+        <p>Информация о бронировании</p>
+        <div>
+            <div class="profile-info">
+                <p>Дата бронирования: {{ reservation.when_created }}</p>
+                <p>Комната: {{ reservation.room }}</p>
+                <p>Дата заезда: {{ reservation.arrival_date }}</p>
+                <p>Дата выезда: {{ reservation.departure_date }}</p>
+                <p>Текущий статус: {{ reservation.status }}</p>
+            </div>
+        </div>
+        <p>Квитанция по оплате</p>
+        <div>
+            <div class="profile-info">
+                {% if reservation.receipt %}
+                <a href="{{ reservation.receipt }}" class="button" target="_blank">ПРОСМОТРЕТЬ КВИТАНЦИЮ</a>
+                {% else %}
+                <p>Квитанция не предоставлена</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

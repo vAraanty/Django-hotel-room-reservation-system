@@ -1,0 +1,78 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load rooms_tags %}
+{% load widget_tweaks %}
+
+{% block upper_links %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'myconfigs/css/rating.css' %}">
+<link rel="stylesheet" href="{% static 'myconfigs/css/feedbacks.css' %}">
+{% endblock %}
+
+{% block title %}
+Оставить отзыв
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+    <h1>Оставьте Ваш отзыв</h1>
+</div>
+{% if user.is_anonymous %}
+<div class="error-message">
+    <p>Оставлять отзывы могут только зарегистрированные пользователи. <a href="{% url 'login' %}?next={{ request.path }}">Войдите</a> или <a href="{% url 'signup' %}">зарегистрируйтесь</a>.</p>
+</div>
+{% endif %}
+<div class="form-wrapper">
+    <form class="form" method="post">
+        {% csrf_token %}
+        <div>
+            <div>
+                <label for="id_room" class="form-required">Ваш номер</label>
+                <select name="room" required id="id_room" {% if user.is_anonymous %}disabled{% endif %}>
+                    <option value selected>---------</option>
+                    {% for room in rooms %}
+                    <option value="{{ room.id }}">{{ room.name }}</option>
+                    {% endfor %}
+                </select>
+                {% if errors.room %}
+                <p class="error">Выберите, пожалуйста, номер.</p>
+                {% endif %}
+            </div>
+            <div>
+                <p class="label form-required">Оцените отдых</p>
+                <input type="hidden" name="rating" id="id_rating">
+                <p class="error">{{ error }}</p>
+                <p class="stars">
+                  <span>
+                    <a class="star-1" href="#">1</a>
+                    <a class="star-2" href="#">2</a>
+                    <a class="star-3" href="#">3</a>
+                    <a class="star-4" href="#">4</a>
+                    <a class="star-5" href="#">5</a>
+                  </span>
+                </p>
+                {% if errors.rating %}
+                <p class="error">Поставьте, пожалуйста, оценку.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            <div style="width: 100%;">
+                <label for="id_content" class="form-required">Ваш отзыв</label>
+                <textarea name="content" cols="40" rows="6" required id="id_content" {% if user.is_anonymous %}disabled{% endif %}></textarea>
+                {% if errors.content %}
+                <p class="error">Напишите отзыв.</p>
+                {% endif %}
+            </div>
+        </div>
+        <input type="submit" style="margin-top: 35px;" {% if user.is_anonymous %}disabled{% endif %}>
+    </form>
+</div>
+{% endblock %}
+
+{% block bottom_links %}
+{% if not user.is_anonymous %}
+<script src="{% static 'myconfigs/js/rating.js' %}"></script>
+{% endif %}
+{% endblock %}

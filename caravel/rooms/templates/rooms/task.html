@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block upper_links %}
+<link href="{% static 'myconfigs/css/reservations.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block title %}
+Задание
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+    <h1>Задание</h1>
+</div>
+
+<div class>
+    <div>
+        <table class="table">
+            <tr>    <th>Фамилия</th>    	                                             <th>Номер</th>			        <th>Дата заезда</th>	                <th>Дата выезда</th>			            <th>Статус</th>                </tr>
+            {% for booking in bookings %}
+            <tr>	<td>{{ booking.user.name }}</td>          <td>{{ booking.room }}</td>		<td>{{ booking.arrival_date }}</td>		<td>{{ booking.departure_date }}</td>		<td>{{ booking.status }}</td>   </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

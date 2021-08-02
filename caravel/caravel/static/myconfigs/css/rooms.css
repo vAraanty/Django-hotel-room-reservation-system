@@ -1,0 +1,96 @@
+div.mini-block{
+	display: flex;
+	margin: 100px auto 35px;
+	padding-bottom: 25px;
+	border-bottom: 1.5px solid gray;
+	width: 1180px;
+}
+.images{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	min-height: 1px;
+}
+img.mini-block{
+	width: calc(300px*1.5);
+	height: calc(193.1px*1.5);
+}
+div.miniature{
+	margin: 0 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+img.miniature{
+	width: calc(300px*0.65);
+	height: calc(193.1px*0.65);
+}
+h2{
+	color: gold;
+	text-shadow: 1px 1px 1px black;
+	font-family: BlackJack;
+	font-size: 45px;
+}
+.info-block{
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 15px;
+}
+.info-block > div:last-child{
+	display: flex; 
+	align-items: center; 
+	height: 100%;
+}
+h3{
+	font-family: Nexa;
+	font-weight: normal;
+}
+#hthird{
+	margin: 2vh 35vw 0;
+}
+.images > div > img{
+	transition: transform 0.2s;
+}
+.images > div > img:hover{
+	image-rendering: pixelated;
+	transform: scale(1.5);
+}
+div.button{
+	margin: 70px 0 50px;
+	text-align: center;
+	font-size: 25px;
+}
+.table{
+	margin: 0 auto;
+	width: 95%;
+	border-spacing: 0 10px;
+}
+th, td{
+	font-family: Montserrat;
+	text-align: center;
+	padding: 10px 0;
+	border-bottom: 0.2px solid gray;
+}
+a.button{
+	font-family: Montserrat;
+	display: inline;
+	color: #b7403a;
+	border: 2px solid #b7403a;
+	width: 100%;
+	height: auto;
+	padding: 10px;
+	font-weight: bold;
+}
+a.button:hover{
+	color: red;
+	border-color: red;
+}
+.info-block > div > p{
+	width: 100%;
+}
+.room-links:hover > *{
+	color: red;
+}

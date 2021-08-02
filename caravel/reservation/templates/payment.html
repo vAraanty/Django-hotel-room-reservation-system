@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block upper_links %}
+<link href="{% static 'myconfigs/css/payment.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+Оплата бронирования
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+    <h1>Оплата бронирования</h1>
+</div>
+<div class="form-wrapper">
+    <form class="form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <div>
+                {% if not token %}
+                <label for="id_book" class="form-required">Выберите бронирование</label>
+                <select name="book" required id="id_book">
+                    <option value selected>---------</option>
+                    {% for booking in bookings %}
+                    <option value="{{ booking.id }}">{{ booking.name }}</option>
+                    {% endfor %}
+                </select>
+                {% else %}
+                <p>Комната: {{ reservation.room }}</p>
+                <p>Дата заезда: {{ reservation.arrival_date }}</p>
+                <p>Дата выезда: {{ reservation.departure_date }}</p>
+                <p>Имя пользователя: {{ customer.name }} {{ customer.surname }}</p>
+                <p>Email: {{ customer.email }}</p>
+                <p>Номер телефона: {{ customer.phone_number }}</p>
+                {% endif %}
+            </div>
+            <div>
+                <label for="id_receipt" class="form-required">Прикрепите квитанцию</label>
+                <input type="file" id="id_receipt" name="receipt" required>
+            </div>
+        </div>
+        <input type="submit" style="margin-top: 35px;">
+    </form>
+</div>
+{% endblock %}

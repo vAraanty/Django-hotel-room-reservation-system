@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block upper_links %}
+<link href="{% static 'myconfigs/css/reservations.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block title %}
+Просмотр заявок/ бронирований
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+    <h1>Просмотр заявок/ бронирований</h1>
+</div>
+<form method="post" class="status-select">
+    {% csrf_token %}
+    <label for="id_status" class="form-required">Фильтр по статусу бронирования</label>
+    <select name="status" required id="id_status">
+        <option value="0" {% if selected == 0 %}selected{% endif %}>Без фильтрации</option>
+        {% for status in statuses %}
+        <option value="{{ status.id }}" {% if selected == status.id %}selected{% endif %}>{{ status.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Просмотр">
+</form>
+
+<div class>
+    <div>
+        <table class="table">
+            <tr>    <th>Имя пользователя</th>    	   <th>Email</th>                       <th>Номер телефона</th>                     <th>Номер</th>			        <th>Дата заезда</th>	                <th>Дата выезда</th>			            <th>Статус</th>                </tr>
+            {% for booking in bookings %}
+            <tr>	<td>{{ booking.user.name }}</td>   <td>{{ booking.user.email }}</td>    <td>{{ booking.user.phone_number }}</td>    <td>{{ booking.room }}</td>		<td>{{ booking.arrival_date }}</td>		<td>{{ booking.departure_date }}</td>		<td>{{ booking.status }}</td>   <td><a href="{% url 'change_status' booking.id %}"class="button">Изменить</a></td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

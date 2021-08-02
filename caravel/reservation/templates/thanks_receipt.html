@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load rooms_tags %}
+
+{% block upper_links %}
+<link rel="stylesheet" href="{% static 'myconfigs/css/thanks.css' %}">
+{% endblock %}
+
+{% block title %}
+Спасибо
+{% endblock %}
+
+{% block content %}
+<div class="hone">
+    <h1>Спасибо!</h1>
+</div>
+<div class="success-message">
+    <p>Спасибо, что выбрали Caravel Hotel. Ваша квитанция принята, и будет рассмотрена менеджером в ближайшее время!</p>
+    <p style="padding-bottom: 30px;">Как только заявка будет рассмотрена, Вы получите извещение на email {% if request.user.is_authorised %}и в Вашем профиле{% endif %}.</p>
+    <a href="{% url 'index' %}" class="button">Вернуться на главную</a>
+</div>
+{% endblock %}
